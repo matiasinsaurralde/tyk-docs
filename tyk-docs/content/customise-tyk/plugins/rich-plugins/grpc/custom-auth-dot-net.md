@@ -95,7 +95,7 @@ The `GRPC_TOOLS` environment variable will point to the appropriate GrpcTools pa
 export GRPC_PROTOC=$GRPC_TOOLS/protoc
 ```
 
-Now that we can safely run `protoc`, we can download the Tyk Protocol Buffers definition files. These files contain the data structures used by Tyk:
+Now that we can safely run `protoc`, we can download the Tyk Protocol Buffers definition files. These files contain the data structures used by Tyk. See [Data Structures](/docs/customise-tyk/plugins/rich-plugins/rich-plugins-data-structures/) for more information:
 
 ```{.copyWrapper}
 cd ~/tyk-plugin
