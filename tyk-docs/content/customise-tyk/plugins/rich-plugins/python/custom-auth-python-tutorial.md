@@ -20,6 +20,7 @@ The code used in this tutorial is also available in [this GitHub repository][1].
 ### Dependencies
 
 * The Tyk CLI utility, which is bundled with our RPM and DEB packages, and can be installed separately from [https://github.com/TykTechnologies/tyk-cli][3]
+* In Tyk 2.8 the Tyk CLI is part of the gateway binary, you can find more information by running "tyk help bundle".
 * Python 3.4
 
 ## <a name="create-plugin"></a>Create the Plugin
@@ -83,6 +84,10 @@ You can modify the `manifest.json` to add as many files as you want. Files that 
 To bundle our plugin we run the following command in the working directory. Check your `tyk-cli` install path first:
 
 `/opt/tyk-gateway/utils/tyk-cli bundle build -y`
+
+For Tyk 2.8 use:
+
+`/opt/tyk-gateway/bin/tyk bundle build -y`
 
 A plugin bundle is a packaged version of the plugin, it may also contain a cryptographic signature of its contents. The `-y` flag tells the Tyk CLI tool to skip the signing process in order to simplify the flow of this tutorial. For more information on the Tyk CLI tool, see [here][4].
 

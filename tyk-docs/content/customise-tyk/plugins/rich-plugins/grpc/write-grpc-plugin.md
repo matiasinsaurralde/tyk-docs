@@ -44,6 +44,11 @@ After saving this file as `manifest.json`, build it using [tyk-cli][1]:
 tyk-cli bundle build -output mybundle.zip -key mykey.pem
 ```
 
+For Tyk 2.8 use (the bundle functionaliy is integrated as part of the gateway binary, located in "/opt/tyk-gateway/bin/tyk` by default):
+```{.copyWrapper}
+tyk bundle build -output mybundle.zip -key mykey.pem
+```
+
 ## <a name="server"></a> The gRPC server
 
 A gRPC server must be implemented in the language of your choice, we have prepared different tutorials for some of them:

@@ -63,6 +63,12 @@ After installing any of the Tyk Gateway packages, the program will be located in
 
 You may use the full path to call this program, feel free to create a symbolic link or attach its directory to your `PATH`.
 
+If you're using Tyk 2.8, you will find the Tyk CLI functionality integrated as part of the Tyk binary, run this command to get more details:
+
+```
+/opt/tyk-gateway/bin/tyk help bundle
+```
+
 > **Note for Go developers**: If you happen to have a working Go environment setup, you can also fetch the bundler tool using `go get`:
 > 
 > `$ go get github.com/TykTechnologies/tyk-cli`
@@ -73,6 +79,12 @@ This step will assume that you're located in your plugin directory and a valid m
 
 ```{.copyWrapper}
 $ tyk-cli bundle build
+```
+
+For Tyk 2.8 (where `tyk` is the gateway binary located in `/opt/tyk-gateway/bin/tyk`):
+
+```{.copyWrapper}
+$ tyk bundle build
 ```
 
 The resulting file will contain all your specified files and a modified `manifest.json` with the right checksum and signature (if required), in ZIP format.
