@@ -21,6 +21,8 @@ Golang plugins are a very flexible and powerful way to extend the functionality 
 
 Every HTTP request (to your API, protected and managed by Tyk) gets passed through a chain of built-in middleware inside Tyk. This middleware performs tasks like authentication, rate limiting, white or black listing and many others - it depends on the particular API specification. In other words the chain of middleware is specific to an API and gets created at API re-load time. Golang plugins allow developers to create custom middleware in Golang and then add them to the chain of middleware. So when Tyk performs an API re-load it also loads the custom middleware and "injects" them into a chain to be called at different stages of the HTTP request life cycle.
 
+It's also possible to access the API definition data structure from within a plugin, this functionality is described in the last section.
+
 ### Golang Plugin example
 
 Let's create a plugin with very basic functionality:
@@ -573,3 +575,27 @@ Sometimes you will need to update your Golang plugin with a new version. There a
 * Tyk main process reload. This will force a reload of all Golang plugins for all APIs.
 
 If a plugin is loaded as a bundle and you need to update it you will need to update your API spec with new `.zip` file name in the `"custom_middleware_bundle"` field. Make sure the new `.zip` file is uploaded and available via the bundle HTTP endpoint before you update your API spec.
+
+### Accessing API definition from a Golang plugin
+
+When Tyk passes a request to your plugin, the API definition is made available as part of the request context. This can be accessed as follows:
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+
+	"github.com/TykTechnologies/tyk/ctx"
+)
+
+func main() {}
+
+func MyPluginFunction(w http.ResponseWriter, r *http.Request) {
+	apidef := ctx.GetDefinition(r)
+  fmt.Println("API name is", apidef.Name)
+}
+```
+
+For additional fields, please check the data structure definition [here](https://github.com/TykTechnologies/tyk/blob/master/apidef/api_definitions.go#L350).
