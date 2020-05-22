@@ -63,6 +63,7 @@ This component is in charge of dispatching your HTTP requests to the custom midd
 *   **PostKeyAuth**: gets executed right after the authentication process.
 *   **CustomAuthCheck**: gets executed as a custom authentication middleware, instead of the standard ones provided by Tyk. Use this to provide your own authentication mechanism.
 *   **Post**: gets executed after the authentication, validation, throttling, and quota-limiting middleware has been executed, just before the request is proxied upstream. Use this to post-process a request before sending it to your upstream API. This is only called when using protected APIs. If you want to call a hook after the authentication but before the validation, throttling and other middleware, see **PostKeyAuth**.
+*   **Response**: gets executed after the upstream API replies. The arguments passed to this hook include both the request and response data. Use this to modify the HTTP response before it's sent to the client. This hook also receives the request object, the session object, the metadata and API definition associated with the request.
 
 
 ### Coprocess Gateway API
