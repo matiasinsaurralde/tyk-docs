@@ -986,3 +986,14 @@ From v2.9.3 you can force the validation of the hostname against the common name
 
 From v3.0 you can log all the 404 errors happening if user tried to access Gateway with unknown listen path.
 The log level used for these records is Error and the feature can be enabled by setting the `config track_404_logs` to `true` in the gateway's config file.
+
+### ignore_canonical_mime_header_key
+
+Added in v3.0.2. When enabled Tyk ignores the canonical format of the MIME header keys.
+
+For example when a request header with a "my-header" key is injected using "global_headers", the upstream would typically get it as "My-Header", when this flag is enabled it will be sent as "my-header" instead.
+ 
+Current support is limited to [JS plugins](https://tyk.io/docs/plugins/supported-languages/javascript-middleware/), [global header injection](https://tyk.io/docs/advanced-configuration/transform-traffic/request-headers/#injecting-and-removing-headers-globally), [virtual endpoint](https://tyk.io/docs/advanced-configuration/compose-apis/virtual-endpoints/) and [JQ transform header rewrites](https://tyk.io/docs/advanced-configuration/transform-traffic/jq-transformations/). This functionality doesn't affect headers that are sent by the HTTP client and the default formatting will apply for this case.
+
+
+For technical details refer to the [CanonicalMIMEHeaderKey](https://golang.org/src/net/textproto/reader.go?h=CanonicalMIMEHeaderKey#L588) functionality in the Go documentation.
